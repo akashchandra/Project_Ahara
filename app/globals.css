@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: #f6f1e8;
+  --surface: rgba(255, 251, 245, 0.78);
+  --surface-strong: #fffcf7;
+  --line: rgba(62, 56, 44, 0.12);
+  --ink: #171714;
+  --muted: #625b4f;
+  --saffron: #d18a2c;
+  --saffron-soft: rgba(209, 138, 44, 0.12);
+  --moss: #58724a;
+  --clay: #9b5a3a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: var(--canvas);
+  color: var(--ink);
+}
+
+::selection {
+  background: rgba(209, 138, 44, 0.22);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-[-0.03em];
+  }
+
+  p {
+    @apply leading-7 text-muted;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(209, 138, 44, 0.75);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-4 sm:px-6 lg:px-8;
+  }
+
+  .surface-card {
+    @apply rounded-4xl border border-line bg-surface shadow-soft backdrop-blur-xl;
+  }
+
+  .surface-card-strong {
+    @apply rounded-4xl border border-white/70 bg-surface-strong shadow-depth;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-white/80 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-muted;
+  }
+
+  .section-title {
+    @apply max-w-3xl text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-[3rem];
+  }
+
+  .section-copy {
+    @apply max-w-2xl text-base text-muted sm:text-lg;
+  }
+
+  .interactive-card {
+    @apply rounded-[28px] border border-transparent bg-white/70 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-white/80 hover:shadow-soft;
+  }
+
+  .subtle-grid {
+    background-image:
+      linear-gradient(rgba(23, 23, 20, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(23, 23, 20, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
