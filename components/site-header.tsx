@@ -4,7 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { BrandMark } from "@/components/brand-mark";
+import { useCart } from "@/components/cart-provider";
 import { MobileNav } from "@/components/mobile-nav";
+import { ShoppingBagIcon } from "@/components/icons";
 import { ButtonLink } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +19,7 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { itemCount, openCart } = useCart();
 
   return (
     <header className="sticky top-0 z-30 px-4 pt-4 sm:px-6 lg:px-8">
@@ -44,6 +47,19 @@ export function SiteHeader() {
             Order Now
           </ButtonLink>
         </div>
+        <button
+          type="button"
+          onClick={openCart}
+          className="relative ml-auto mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/80 text-ink shadow-soft transition hover:bg-white lg:ml-3 lg:mr-0"
+          aria-label={`Open cart with ${itemCount} item${itemCount === 1 ? "" : "s"}`}
+        >
+          <ShoppingBagIcon />
+          {itemCount > 0 ? (
+            <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-saffron px-1 text-[0.68rem] font-bold text-white">
+              {itemCount}
+            </span>
+          ) : null}
+        </button>
         <MobileNav
           open={open}
           onToggle={() => setOpen((current) => !current)}

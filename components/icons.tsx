@@ -131,6 +131,30 @@ export function ChevronRightIcon({ className }: IconProps) {
   );
 }
 
+export function ShoppingBagIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className={cn("h-5 w-5", className)}
+    >
+      <path
+        d="M7.2 9.3H16.8L18 20H6L7.2 9.3Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 9.2V7.5C9 5.8 10.3 4.5 12 4.5C13.7 4.5 15 5.8 15 7.5V9.2"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function LeafIcon({ className }: IconProps) {
   return (
     <svg

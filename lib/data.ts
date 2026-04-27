@@ -1,90 +1,100 @@
 export const brand = {
   name: "Ahara",
   label: "Modern Indian kitchen",
-  tagline: "Crisp dosa, layered biryani, and bowls built around you.",
+  tagline: "Modern Indian favorites, made fast and fresh.",
   heroCopy:
-    "Ahara brings bright Indian flavors into a calm, design-led ordering experience. Start with signature favorites or build a bowl that lands exactly the way you like it.",
-  location: "24 Mercer Street, New York, NY",
-  hours: "Mon-Sun · 11 AM - 10 PM"
+    "From crisp dosas and layered biryani to warm chai and custom bowls, Ahara brings Indian comfort food into a clean, easy ordering experience.",
+  location: "Food truck locations and pickup details coming soon.",
+  hours: "Sample hours: Mon-Sun · 11 AM - 10 PM"
 } as const;
 
+export type DishVisual = "dosa" | "biryani" | "chai" | "bowl";
+
 export type Dish = {
+  id: string;
   name: string;
   description: string;
   price: number;
   tag?: string;
   badge?: string;
+  category: string;
   href?: string;
+  visual: DishVisual;
   accent: "saffron" | "moss" | "clay";
 };
 
 export const signatureFavorites: Dish[] = [
   {
+    id: "masala-dosa",
     name: "Masala Dosa",
     description:
-      "A shatter-crisp rice-lentil crepe folded around turmeric potatoes with coconut chutney and warm sambar.",
+      "A shatter-crisp rice-lentil crepe folded around turmeric potatoes, coconut chutney, and warm sambar.",
     price: 13.5,
     tag: "Best Seller",
     badge: "Vegetarian",
+    category: "Signature",
     href: "/menu",
+    visual: "dosa",
     accent: "saffron"
   },
   {
+    id: "royal-chicken-biryani",
     name: "Royal Chicken Biryani",
     description:
       "Fragrant basmati layered with saffron, mint, caramelized onions, and chicken finished low and slow.",
     price: 16.75,
     tag: "Signature",
     badge: "Slow-cooked",
+    category: "Signature",
     href: "/menu",
+    visual: "biryani",
     accent: "clay"
   },
   {
+    id: "cardamom-house-chai",
     name: "Cardamom House Chai",
     description:
       "Assam tea steeped with ginger, cardamom, and a silky finish that lingers in the best way.",
     price: 4.75,
     tag: "Customer Favorite",
     badge: "Daily Brewed",
+    category: "Drinks",
     href: "/menu",
+    visual: "chai",
     accent: "moss"
   }
 ];
 
-export const popularItems: Dish[] = [
-  signatureFavorites[0],
-  signatureFavorites[1],
-  signatureFavorites[2],
+export const cravingCards: Dish[] = [
   {
+    ...signatureFavorites[0],
+    tag: "Crispy & Light",
+    description: "Paper-crisp edges, soft spiced potatoes, cooling chutney, and sambar for dipping."
+  },
+  {
+    ...signatureFavorites[1],
+    tag: "Rich & Filling",
+    description: "Layered basmati, slow aromatics, tender chicken, and a cooling spoon of raita."
+  },
+  {
+    ...signatureFavorites[2],
+    tag: "Warm & Comforting",
+    description: "Steeped tea, ginger, cardamom, and a cozy finish for the ride home."
+  },
+  {
+    id: "custom-bowl-preview",
     name: "Market Paneer Bowl",
     description:
-      "Brown rice, charred paneer, cucumber, onion, herb chutney, and citrus yogurt in one balanced bowl.",
+      "Choose your base, protein, and crisp vegetables for a fresh bowl built around your craving.",
     price: 15.25,
-    tag: "Build Preview",
+    tag: "Fresh & Custom",
     badge: "Customizable",
+    category: "Bowls",
     href: "/build-your-bowl",
+    visual: "bowl",
     accent: "moss"
   }
 ];
-
-export const trustPoints = [
-  {
-    title: "Made to order",
-    description: "Every dosa is fired fresh, every bowl is assembled as you choose."
-  },
-  {
-    title: "Layered flavors",
-    description: "Slow aromatics, bright chutneys, and precise seasoning in every category."
-  },
-  {
-    title: "Fast-casual pace",
-    description: "Designed for lunch runs, dinner pickup, and repeatable favorites."
-  },
-  {
-    title: "Comfort, refined",
-    description: "Warm, approachable Indian food with a modern, polished point of view."
-  }
-] as const;
 
 export const menuSections = [
   {
@@ -93,32 +103,48 @@ export const menuSections = [
     description: "The dishes people come back for first.",
     items: [
       {
+        id: "masala-dosa",
         name: "Masala Dosa",
         description:
           "Golden, crackling dosa wrapped around cumin potatoes with coconut chutney and sambar.",
         price: 13.5,
-        tags: ["Vegetarian", "Signature"]
+        tags: ["Vegetarian", "Signature"],
+        category: "Signature Plates",
+        visual: "dosa",
+        accent: "saffron"
       },
       {
+        id: "ghee-roast-dosa",
         name: "Ghee Roast Dosa",
         description:
           "Crisp dosa brushed with fragrant ghee, finished with chili podi and roasted tomato chutney.",
         price: 14.5,
-        tags: ["House Favorite", "Bold"]
+        tags: ["House Favorite", "Bold"],
+        category: "Signature Plates",
+        visual: "dosa",
+        accent: "saffron"
       },
       {
+        id: "royal-chicken-biryani",
         name: "Royal Chicken Biryani",
         description:
           "Saffron basmati, chicken, mint, crisp onions, and spiced yogurt on the side.",
         price: 16.75,
-        tags: ["Slow-cooked", "Bestseller"]
+        tags: ["Slow-cooked", "Bestseller"],
+        category: "Signature Plates",
+        visual: "biryani",
+        accent: "clay"
       },
       {
+        id: "lamb-biryani",
         name: "Lamb Biryani",
         description:
           "Deeply aromatic rice layered with tender lamb, browned onions, and cooling raita.",
         price: 18.5,
-        tags: ["Rich", "Weekend Pick"]
+        tags: ["Rich", "Weekend Pick"],
+        category: "Signature Plates",
+        visual: "biryani",
+        accent: "clay"
       }
     ]
   },
@@ -128,18 +154,26 @@ export const menuSections = [
     description: "Quick, balanced meals with the same depth of flavor.",
     items: [
       {
+        id: "market-paneer-bowl",
         name: "Market Paneer Bowl",
         description:
           "Brown rice, paneer, cucumber, onion, herb chutney, and charred corn with citrus yogurt.",
         price: 15.25,
-        tags: ["Customizable", "Vegetarian"]
+        tags: ["Customizable", "Vegetarian"],
+        category: "Bowls and Favorites",
+        visual: "bowl",
+        accent: "moss"
       },
       {
+        id: "tandoori-chicken-bowl",
         name: "Tandoori Chicken Bowl",
         description:
           "Basmati rice, roasted chicken, onions, cucumber, corn, and cooling mint yogurt.",
         price: 16,
-        tags: ["Protein-forward", "Fresh"]
+        tags: ["Protein-forward", "Fresh"],
+        category: "Bowls and Favorites",
+        visual: "bowl",
+        accent: "moss"
       }
     ]
   },
@@ -149,22 +183,34 @@ export const menuSections = [
     description: "A warm finish or an easy reset in the middle of the day.",
     items: [
       {
+        id: "cardamom-house-chai",
         name: "Cardamom House Chai",
         description: "Assam tea simmered with ginger, green cardamom, and milk.",
         price: 4.75,
-        tags: ["Daily Brewed", "Comfort"]
+        tags: ["Daily Brewed", "Comfort"],
+        category: "Chai and Sips",
+        visual: "chai",
+        accent: "moss"
       },
       {
+        id: "saffron-iced-chai",
         name: "Saffron Iced Chai",
         description: "Cold chai with saffron, rose, and a clean creamy finish.",
         price: 5.5,
-        tags: ["Seasonal", "Refreshing"]
+        tags: ["Seasonal", "Refreshing"],
+        category: "Chai and Sips",
+        visual: "chai",
+        accent: "saffron"
       },
       {
+        id: "mint-lime-soda",
         name: "Mint Lime Soda",
         description: "Fresh lime, sparkling water, mint, and a savory pinch of black salt.",
         price: 4.5,
-        tags: ["Zero Proof", "Bright"]
+        tags: ["Zero Proof", "Bright"],
+        category: "Chai and Sips",
+        visual: "chai",
+        accent: "moss"
       }
     ]
   }

@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { BowlOptionCard } from "@/components/bowl-option-card";
+import { useCart } from "@/components/cart-provider";
 import { ChevronRightIcon, SparkIcon } from "@/components/icons";
 import { OrderSummaryCard } from "@/components/order-summary-card";
 import { StepIndicator } from "@/components/step-indicator";
@@ -11,6 +12,7 @@ import { bowlBases, bowlProteins, bowlSteps, bowlVeggies } from "@/lib/data";
 import { formatCurrency } from "@/lib/utils";
 
 export function BowlBuilder() {
+  const { addCustomBowl, openCart } = useCart();
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedBaseId, setSelectedBaseId] = useState<string | null>(null);
   const [selectedProteinId, setSelectedProteinId] = useState<string | null>(null);
@@ -73,7 +75,7 @@ export function BowlBuilder() {
     },
     {
       label: "Review",
-      value: canCheckout ? "Ready to place" : undefined,
+      value: canCheckout ? "Ready to add" : undefined,
       missingText: "Finish required selections",
       onEdit: () => setCurrentStep(canCheckout ? 3 : selectedBase ? 1 : 0)
     }
@@ -86,7 +88,7 @@ export function BowlBuilder() {
         ? "Continue to veggies"
         : currentStep === 2
           ? "Continue to review"
-          : "Place order";
+          : "Add Bowl to Cart";
 
   function handleVeggieToggle(id: string) {
     setSelectedVeggieIds((current) =>
@@ -102,7 +104,13 @@ export function BowlBuilder() {
       return;
     }
 
-    if (canCheckout) {
+    if (canCheckout && selectedBase && selectedProtein) {
+      addCustomBowl({
+        base: selectedBase.name,
+        protein: selectedProtein.name,
+        veggies: selectedVeggies.map((veggie) => veggie.name),
+        price: total
+      });
       setShowConfirmation(true);
     }
   }
@@ -151,7 +159,7 @@ export function BowlBuilder() {
               {currentStep === 2 &&
                 "Veggies are optional, lightly priced, and there to sharpen contrast, texture, and brightness."}
               {currentStep === 3 &&
-                "Your summary updates live. Edit anything before placing the mock order."}
+                "Your summary updates live. Edit anything before adding the bowl to your cart."}
             </p>
 
             <div className="mt-8">
@@ -291,7 +299,7 @@ export function BowlBuilder() {
                         </p>
                       </div>
                       <div className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink shadow-soft">
-                        Ready for mock checkout
+                        Ready for cart
                       </div>
                     </div>
                   </div>
@@ -305,7 +313,7 @@ export function BowlBuilder() {
                   {currentStep + 1}
                 </span>
                 {currentStep === 3
-                  ? "Everything can still be edited before placing the order."
+                  ? "Everything can still be edited before adding this bowl."
                   : "Move step by step. The summary on the right updates as you go."}
               </div>
               <div className="flex items-center gap-3">
@@ -370,15 +378,15 @@ export function BowlBuilder() {
           <div
             role="dialog"
             aria-modal="true"
-            aria-label="Order placed"
+            aria-label="Bowl added to cart"
             className="surface-card-strong w-full max-w-xl p-6 sm:p-8"
           >
-            <Badge tone="moss">Mock order placed</Badge>
-            <h3 className="mt-4 text-3xl font-semibold text-ink">Your bowl is in the queue.</h3>
+            <Badge tone="moss">Added to order</Badge>
+            <h3 className="mt-4 text-3xl font-semibold text-ink">Custom bowl added to your order.</h3>
             <p className="mt-3 text-base sm:text-lg">
               {selectedBase?.name} with {selectedProtein?.name}
               {selectedVeggies.length > 0 ? ` and ${selectedVeggies.map((veggie) => veggie.name).join(", ")}` : ""}{" "}
-              will be ready in about 12-15 minutes.
+              is now in your cart.
             </p>
             <div className="mt-6 rounded-[28px] border border-white/75 bg-white/85 p-5">
               <div className="flex items-center justify-between">
@@ -396,11 +404,21 @@ export function BowlBuilder() {
               </div>
             </div>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Button
+                type="button"
+                size="lg"
+                onClick={() => {
+                  setShowConfirmation(false);
+                  openCart();
+                }}
+              >
+                Review Cart
+              </Button>
               <Button type="button" size="lg" onClick={resetBuilder}>
-                Build another bowl
+                Add Another Bowl
               </Button>
               <ButtonLink href="/menu" size="lg" variant="secondary" onClick={() => setShowConfirmation(false)}>
-                Explore more dishes
+                Add From Menu
               </ButtonLink>
             </div>
           </div>

@@ -21,8 +21,8 @@ export default function BuildYourBowlPage() {
             Designed to feel clear on mobile and effortless on repeat.
           </h1>
           <p className="mt-5 max-w-2xl text-base sm:text-lg">
-            Move step by step, watch the total update live, and review everything before placing a mock
-            order. The flow is fast, touch-friendly, and built to feel like a product, not a form.
+            Move step by step, watch the total update live, and review everything before adding your
+            custom bowl to the cart.
           </p>
         </div>
       </SectionShell>
@@ -55,10 +55,10 @@ export default function BuildYourBowlPage() {
           <article className="rounded-[28px] border border-white/75 bg-white/80 p-5">
             <div className="flex items-center gap-2 text-sm font-semibold text-ink">
               <SparkIcon className="text-clay" />
-              Mock checkout only
+              Cart-first flow
             </div>
             <p className="mt-3 text-sm sm:text-base">
-              This MVP closes the loop with a polished confirmation state instead of a dead-end button.
+              Add your completed bowl to the shared cart, then finish through the demo order drawer.
             </p>
           </article>
         </div>

@@ -69,11 +69,8 @@ export default function MenuPage() {
           <div className="mt-10 grid gap-4 lg:grid-cols-2">
             {section.items.map((item) => (
               <MenuItemCard
-                key={item.name}
-                name={item.name}
-                description={item.description}
-                price={item.price}
-                tags={item.tags}
+                key={item.id}
+                {...item}
               />
             ))}
           </div>
