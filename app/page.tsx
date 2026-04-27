@@ -2,10 +2,10 @@ import { BuildBowlPreview } from "@/components/build-bowl-preview";
 import { FinalCTA } from "@/components/final-cta";
 import { FoodCard } from "@/components/food-card";
 import { HeroVisual } from "@/components/hero-visual";
-import { ClockIcon, LeafIcon, SparkIcon } from "@/components/icons";
+import { SparkIcon } from "@/components/icons";
 import { SectionShell } from "@/components/ui/section-shell";
 import { ButtonLink } from "@/components/ui/button";
-import { brand, popularItems, signatureFavorites, trustPoints } from "@/lib/data";
+import { brand, cravingCards, signatureFavorites } from "@/lib/data";
 
 export default function HomePage() {
   return (
@@ -22,35 +22,12 @@ export default function HomePage() {
             </h1>
             <p className="mt-5 max-w-2xl text-base sm:text-lg">{brand.heroCopy}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/menu" size="lg">
-                Order Now
+              <ButtonLink href="#favorites" size="lg">
+                Order Signature Dishes
               </ButtonLink>
               <ButtonLink href="/build-your-bowl" size="lg" variant="secondary">
                 Build Your Bowl
               </ButtonLink>
-            </div>
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              <div className="surface-card px-4 py-4">
-                <div className="flex items-center gap-2 text-sm font-semibold text-ink">
-                  <ClockIcon className="text-saffron" />
-                  12-15 min pickup
-                </div>
-                <p className="mt-2 text-sm text-muted">Fast enough for lunch, refined enough for dinner.</p>
-              </div>
-              <div className="surface-card px-4 py-4">
-                <div className="flex items-center gap-2 text-sm font-semibold text-ink">
-                  <LeafIcon className="text-moss" />
-                  Fresh chutneys daily
-                </div>
-                <p className="mt-2 text-sm text-muted">Bright coconut, mint, and tomato built in-house.</p>
-              </div>
-              <div className="surface-card px-4 py-4">
-                <div className="flex items-center gap-2 text-sm font-semibold text-ink">
-                  <SparkIcon className="text-saffron" />
-                  Mobile-first ordering
-                </div>
-                <p className="mt-2 text-sm text-muted">Signature plates and custom bowls in a clear flow.</p>
-              </div>
             </div>
           </div>
           <HeroVisual />
@@ -62,12 +39,11 @@ export default function HomePage() {
           <div>
             <span className="eyebrow">Signature favorites</span>
             <h2 className="section-title mt-4 text-balance">
-              The dishes that define Ahara at first glance.
+              Dosa, biryani, and chai are the heart of the kitchen.
             </h2>
           </div>
           <p className="section-copy">
-            Crisp dosa, aromatic biryani, and house chai anchor the brand before you ever touch the bowl
-            builder.
+            Order the classics directly, then add a custom bowl if the craving wants something fresher.
           </p>
         </div>
         <div className="mt-10 grid gap-4 lg:grid-cols-3">
@@ -84,37 +60,17 @@ export default function HomePage() {
       <SectionShell>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="eyebrow">Popular now</span>
-            <h2 className="section-title mt-4 text-balance">A few easy wins if you want to order quickly.</h2>
+            <span className="eyebrow">Choose your craving</span>
+            <h2 className="section-title mt-4 text-balance">Pick by mood, then add it to your order.</h2>
           </div>
           <p className="section-copy">
-            Built for first-time visitors, repeat regulars, and anyone deciding between comfort and
-            customization.
+            Crispy, rich, warm, or fresh. The menu is easier when your appetite gets the first vote.
           </p>
         </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {popularItems.map((item) => (
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {cravingCards.map((item) => (
             <FoodCard key={item.name} {...item} />
           ))}
-        </div>
-      </SectionShell>
-
-      <SectionShell>
-        <div className="surface-card-strong px-6 py-8 sm:px-8 sm:py-10">
-          <div className="max-w-3xl">
-            <span className="eyebrow">Why choose us</span>
-            <h2 className="section-title mt-4 text-balance">
-              Quick enough for everyday, layered enough to feel worth craving.
-            </h2>
-          </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {trustPoints.map((point) => (
-              <article key={point.title} className="rounded-[28px] border border-white/75 bg-white/80 p-5">
-                <h3 className="text-xl font-semibold text-ink">{point.title}</h3>
-                <p className="mt-3 text-sm sm:text-base">{point.description}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </SectionShell>
 

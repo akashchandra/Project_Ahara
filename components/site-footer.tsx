@@ -16,7 +16,7 @@ export function SiteFooter() {
           <div className="space-y-4">
             <BrandMark />
             <p className="max-w-sm text-sm text-muted">
-              Premium fast-casual Indian food designed for the way people actually order today.
+              Crisp dosas, layered biryani, warm chai, and custom bowls made for easy pickup.
             </p>
           </div>
           <div>
@@ -42,7 +42,7 @@ export function SiteFooter() {
               <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-muted">Hours</h3>
               <p className="mt-2 text-sm text-muted">{brand.hours}</p>
             </div>
-            <p className="text-sm text-muted">Instagram / TikTok / Maps</p>
+            <p className="text-sm text-muted">Instagram / TikTok / Pickup alerts</p>
           </div>
         </div>
       </div>

@@ -44,7 +44,7 @@ const config: Config = {
       },
       backgroundImage: {
         halo:
-          "radial-gradient(circle at top, rgba(214, 151, 64, 0.18), transparent 48%), radial-gradient(circle at 80% 20%, rgba(89, 123, 78, 0.12), transparent 42%)"
+          "linear-gradient(180deg, #f6f1e8 0%, #fff8ed 44%, #f3eadc 100%)"
       },
       borderRadius: {
         "4xl": "2rem",
